@@ -13,21 +13,18 @@ const findLinkByID = (links, id) => {
 const resolvers = {
   Query: {
     info: () => "API OK!",
-    feed: () => links,
-    link: (root, args) => {
-      return findLinkByID(links, args.id);
-    }
+    feed: () => (root, args, context, info) => {
+      return context.db.query.links({}, info);
+    },
   },
   Mutation: {
-    post: (root, args) => {
-      const link = {
-        id: `link-${idCount++}`,
-        description: args.description,
-        url: args.url
-      }
-      links.push(link);
-
-      return link;
+    post: (root, args, context, info) => {
+      return context.db.mutation.createLink({
+        data: {
+          url: args.url,
+          description: args.description
+        }
+      }, info);
     },
     updateLink: (root, args) => {
       let link = findLinkByID(links, args.id);

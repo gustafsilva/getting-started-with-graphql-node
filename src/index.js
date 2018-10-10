@@ -6,12 +6,16 @@ let links = [{
 
 let idCount = links.length;
 
+const findLinkByID = (links, id) => {
+  return links.find((link) => link.id === id)
+}
+
 const resolvers = {
   Query: {
     info: () => "API OK!",
     feed: () => links,
     link: (root, args) => {
-      return links.find((link) => link.id === args.id);
+      return findLinkByID(links, args.id);
     }
   },
   Mutation: {
@@ -23,7 +27,17 @@ const resolvers = {
       }
       links.push(link);
       return link;
+    },
+    deleteLink: (root, args) => {
+      link = findLinkByID(links, args.id);
+
+      if(link) {
+        links = links.filter((link) => link.id != args.id);
+      }
+
+      return link;
     }
+    
   }
 }
 

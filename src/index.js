@@ -26,6 +26,20 @@ const resolvers = {
         url: args.url
       }
       links.push(link);
+
+      return link;
+    },
+    updateLink: (root, args) => {
+      let link = findLinkByID(links, args.id);
+      if(link) {
+        link.description = args.description;
+        link.url = args.url;
+
+        const linkIndex = links.indexOf(link);
+        console.log(linkIndex);
+        links[linkIndex] = link;
+      }
+
       return link;
     },
     deleteLink: (root, args) => {

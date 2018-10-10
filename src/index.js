@@ -1,16 +1,16 @@
-const typeDefs = `
-type Query {
- info: String! 
-}
-`;
+let links = [{
+  id: 'link-0',
+  url: 'www.howtographql.com',
+  description: 'Fullstack tutorial for GraphQL'
+}]
 
 const resolvers = {
   Query: {
-    info: () => 'OK!'
+    info: () => "API OK!",
+    feed: () => links,
   }
 }
 
 module.exports = {
-  typeDefs,
   resolvers
 };

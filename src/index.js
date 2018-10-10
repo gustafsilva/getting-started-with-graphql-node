@@ -10,6 +10,9 @@ const resolvers = {
   Query: {
     info: () => "API OK!",
     feed: () => links,
+    link: (root, args) => {
+      return links.find((link) => link.id === args.id);
+    }
   },
   Mutation: {
     post: (root, args) => {

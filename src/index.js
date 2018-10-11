@@ -13,7 +13,7 @@ const findLinkByID = (links, id) => {
 const resolvers = {
   Query: {
     info: () => "API OK!",
-    feed: () => (root, args, context, info) => {
+    feed: (root, args, context, info) => {
       return context.db.query.links({}, info);
     },
   },

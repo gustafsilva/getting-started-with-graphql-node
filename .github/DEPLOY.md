@@ -1,4 +1,4 @@
-# Getting Started Deploy :rocket:
+# Getting Started Deploy
 After you have cloned the project and installed the dependencies, it is nescessary to run the container with the database and prisma, using the command:
 ```shell
 $ cd database/

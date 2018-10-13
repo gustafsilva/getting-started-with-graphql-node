@@ -13,7 +13,7 @@ $ cd getting-started-with-graphql-node/
 $ npm install
 ```
 
-**More information on how to RUN and DEPLOY the project [here](.github/DEPLOY.md).**
+More information on how to **RUN and DEPLOY** the project [here](.github/DEPLOY.md) :fire:
 
 ## Dependencies
 * [Node](https://nodejs.org/en/)

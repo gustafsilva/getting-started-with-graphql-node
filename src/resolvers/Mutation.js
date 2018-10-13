@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { APP_SECRET, getUserId } = require("../utils");
 
-const signup = async (parent, args, context, info) => {
+const signup = async (parent, args, context) => {
   const password = await bcrypt.hash(args.password, 10);
   
   const user = await context.db.mutation.createUser({
@@ -17,7 +17,7 @@ const signup = async (parent, args, context, info) => {
   }
 }
 
-const login = async (parent, args, context, info) => {
+const login = async (parent, args, context) => {
   const user = await context.db.query.user({ where: { email: args.email }}, `{ id password }`);
   
   if (!user) {
@@ -40,9 +40,6 @@ const login = async (parent, args, context, info) => {
 
 const post = (parent, args, context, info) => {
   const userId = getUserId(context);
-
-  console.log(`GRITAAAaaaaa:`);
-  console.log(userId);
 
   return context.db.mutation.createLink({
     data: {

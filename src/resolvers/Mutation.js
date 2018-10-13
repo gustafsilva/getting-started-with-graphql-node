@@ -50,8 +50,20 @@ const post = (parent, args, context, info) => {
   }, info);
 }
 
+const vote = (parent, args, context, info) => {
+  const userId = getUserId(context);
+
+  return context.db.mutation.createVote({
+    data: {
+      user: { connect: { id: userId } },
+      link: { connect: { id: args.linkId}},
+    }
+  }, info);
+}
+
 module.exports = {
   signup,
   login,
   post,
+  vote
 }
